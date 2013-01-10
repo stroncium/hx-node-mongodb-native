@@ -1,0 +1,11 @@
+<project name="hx-node-mongodb-native" url="https://github.com/stroncium/hx-node-mongodb-native" license="MIT">
+  <user name="stroncium"/>
+  <tag v="nodejs"/>
+  <tag v="node"/>
+  <tag v="js"/>
+  <tag v="binding"/>
+  <tag v="db"/>
+  <tag v="mongodb/>
+  <description>Bindings for node.js mongodb-native.</description>
+  <version name="0.01">Not ready.</version>
+</project>

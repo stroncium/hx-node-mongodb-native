@@ -1,0 +1,4 @@
+-main Test
+-js test.js
+-lib node-mongodb-native
+-lib async

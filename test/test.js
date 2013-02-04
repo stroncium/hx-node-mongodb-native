@@ -3,10 +3,21 @@ var async = async || {}
 async.Build = function() { }
 var Test = function() { }
 Test.__interfaces__ = [async.Build];
-Test.main = function() {
-	node.Fs.readFile("text","utf8",function(err,data) {
-		console.log(data);
+Test.goAsync = function(cb) {
+	node.Fs.readdir(".",function(__e,list) {
+		if(__e == null) {
+			console.log(list);
+			node.Fs.readFile("text","utf8",function(__e1,text) {
+				if(__e1 == null) {
+					console.log(text);
+					cb(null);
+				} else cb(__e1);
+			});
+		} else cb(__e);
 	});
+}
+Test.main = function() {
+	Test.goAsync(Test.afterAsync);
 }
 Test.afterAsync = function(error) {
 	if(error == null) console.log("success"); else console.log("error: " + error);
@@ -87,22 +98,14 @@ node.Fs.FileOpenFlags.AXPlus = ["AXPlus",23];
 node.Fs.FileOpenFlags.AXPlus.toString = $estr;
 node.Fs.FileOpenFlags.AXPlus.__enum__ = node.Fs.FileOpenFlags;
 node.Fs.FileOpenFlags.Custom = function(s) { var $x = ["Custom",24,s]; $x.__enum__ = node.Fs.FileOpenFlags; $x.toString = $estr; return $x; }
-node.ReadableStream = function() { }
-node.WriteStream = function() { }
-node.Fs.FSWatcherEvent = { __constructs__ : ["Change","Error","C"] }
-node.Fs.FSWatcherEvent.Change = ["Change",0];
-node.Fs.FSWatcherEvent.Change.toString = $estr;
-node.Fs.FSWatcherEvent.Change.__enum__ = node.Fs.FSWatcherEvent;
-node.Fs.FSWatcherEvent.Error = ["Error",1];
-node.Fs.FSWatcherEvent.Error.toString = $estr;
-node.Fs.FSWatcherEvent.Error.__enum__ = node.Fs.FSWatcherEvent;
-node.Fs.FSWatcherEvent.C = function(v) { var $x = ["C",2,v]; $x.__enum__ = node.Fs.FSWatcherEvent; $x.toString = $estr; return $x; }
+if(!node.stream) node.stream = {}
+node.stream.Readable = function() { }
 node.HaxeInit = function() { }
+node.WritableStream = function() { }
 if(!node.mongodb) node.mongodb = {}
 node.mongodb.HaxeInit = function() { }
 node.Fs = require('fs');
 node.Fs.FileOpenFlags = {Read: 'r', R: 'r',ReadWrite: 'r+', RPlus: 'r+',ReadSync: 'rs', RS: 'rs',ReadWriteSync: 'rs+', RSPlus: 'rs+',Write: 'w', W: 'w',WriteExclusive: 'wx', WX: 'wx',WriteRead: 'w+', WPlus: 'w+',WriteReadExclusive: 'wx+', WXPlus: 'wx+',Append: 'a', A: 'a',AppendExclusive: 'ax', AX: 'ax',ReadAppend: 'a+', APlus: 'a+',ReadAppendExclusive: 'ax+', AXPlus: 'ax+', Custom: function(s){return s;}}
-node.Fs.FSWatcherEvent = {Change: 'change', Error: 'error'}
 node.Fs.SymlinkType = {Dir:'dir', File:'file', Junction:'junction', Custom: function(s){return s;} }
 var node = node || {}
 node.mongodb = require('mongodb');

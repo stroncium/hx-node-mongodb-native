@@ -25,8 +25,13 @@ extern class Collection<T>{
     this.find(query, fields).nextObject(cb);
   };
 
-  public function remove(query:Dynamic, ?justOne:Bool):Void;
-  public function update(query:Dynamic, upd:Dynamic, ?options:Dynamic, ?cb:CB1<Int>):Void;
+  private function remove(query:Dynamic, ?justOne:Bool):Void;
+  public inline function removeOne(query:Dynamic):Void{
+    remove(query, true);
+  }
+  public inline function removeAll(query:Dynamic):Void{
+    remove(query, false);
+  }
   public function aggregate(queries:Array<Dynamic>, opts:Dynamic, cb:CB1<Dynamic>):Void;
   public function findAndModify(query:Dynamic, sort:Dynamic, update:Dynamic, options:Dynamic, cb:CB1<T>):Void;
 
@@ -40,6 +45,8 @@ extern class Collection<T>{
   //   this.db.command('text'
   // }
 
+  private function update(query:Dynamic, upd:Dynamic, ?options:Dynamic, ?cb:CB1<Int>):Void;
+
   public inline function upsert(query:Dynamic, upd:Dynamic, ?cb:CB1<Int>):Void{
     this.update(query, upd, {safe: cb != null, upsert:true}, cb);
   }
@@ -52,4 +59,15 @@ extern class Collection<T>{
     this.update(query, upd, {safe: cb != null, multi:true}, cb);
   }
 
+  public function count(q:Dynamic, cb:CB1<Int>):Void;
+
+  // public inline function textSearch(text:String, filter:Null<Dynamic>, project:Null<Dynamic>, cb:CB1<Array<Dynamic>>){
+  //   var q:Dynamic = {search:text};
+  //   if(filter != null) q.filter = filter;
+  //   if(project != null) q.project = project;
+  //   runCommand('text', q, function(err, res){
+  //   });
+  // }
+
 }
+// db.apps.runCommand('text', {search:'empire', filter:{test:null}})

@@ -16,4 +16,18 @@ extern class ObjectId{
   public function toString():String;
   public inline function toHex():String return this.toHexString();
   public function toHexString():String;
+  public static inline function arrayFromStringArray(a:Array<String>, nullifyIfBad:Bool = false):Null<Array<ObjectId>>{
+    var ret = [];
+    for(str in a){
+      var id = fromString(str);
+      if(id == null){
+        if(nullifyIfBad){
+          ret = null;
+          break;
+        }
+      }
+      else ret.push(id);
+    }
+    return ret;
+  }
 }

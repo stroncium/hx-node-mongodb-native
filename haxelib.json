@@ -1,0 +1,13 @@
+{
+  "name": "node-mongodb-native",
+  "license": "MIT",
+  "tags": ["nodejs","node","js","binding","mongodb","mongo","db"],
+  "description": "Bindings for node.js mongodb-native.",
+  "contributors": ["stroncium"],
+  "releasenote": "Not ready.",
+  "version": "0.01",
+  "url": "https://github.com/stroncium/hx-node-mongodb-native",
+  "dependencies": {
+
+  }
+}

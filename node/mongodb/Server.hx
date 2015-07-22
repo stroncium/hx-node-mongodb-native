@@ -1,6 +1,5 @@
 package node.mongodb;
-import node.mongodb.HaxeInit;
 
-extern class Server{
+extern class Server implements Node.ModuleSub<'mongodb', '', 'Server'>{
   function new(address:String, port:Int, options:Dynamic):Void;
 }

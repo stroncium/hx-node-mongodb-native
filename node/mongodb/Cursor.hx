@@ -1,6 +1,7 @@
 package node.mongodb;
 
-extern class Cursor<T> implements Node.ModuleSub<'mongodb', '', 'Cursor'>{
+@:jsRequire('mongodb', 'Cursor')
+extern class Cursor<T>{
   function toArray(cb:Dynamic->Array<T>->Void):Void;
   function nextObject(cb:Dynamic->T->Void):Void;
   // function next(cb:CB<T>):Void;

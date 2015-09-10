@@ -13,7 +13,8 @@ private typedef AggregationOpts = {
   ?maxTimeMS:Int,
 };
 
-extern class Collection<T> implements Node.ModuleSub<'mongodb', '', 'Collection'>{
+@:jsRequire('mongodb', 'Collection')
+extern class Collection<T>{
   var db:Db;
   function new(db:Db, name:String):Void;
   public function find(query:Dynamic, ?fields:Array<String>, ?options:Dynamic):Cursor<T>;

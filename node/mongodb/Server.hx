@@ -1,5 +1,6 @@
 package node.mongodb;
 
-extern class Server implements Node.ModuleSub<'mongodb', '', 'Server'>{
+@:jsRequire('mongodb', 'Server')
+extern class Server{
   function new(address:String, port:Int, options:Dynamic):Void;
 }

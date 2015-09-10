@@ -1,6 +1,7 @@
 package node.mongodb;
 
-extern class ObjectId implements Node.ModuleSub<'mongodb', '~2.1.0', 'ObjectID'>{
+@:jsRequire('mongodb', 'ObjectID')
+extern class ObjectId{
   private static inline function __init__():Void{
     CHECKER = ~/^[0-9a-fA-F]{24}$/;
     // untyped __js__("node.mongodb.ObjectId.fromString = node.mongodb.ObjectId.fromHexString =  function fromString(v){ try{return new node.mongodb.ObjectId(v);} catch(e){return null;}};");

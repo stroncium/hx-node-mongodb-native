@@ -26,7 +26,7 @@ extern class Collection<T>{
     if(cb == null) insertRaw(doc);
     else insertRaw(doc, {safe:true}, function(err, res){
       if(err != null) cb(err, null);
-      else cb(null, res[0]);
+      else cb(null, res.ops[0]);
     });
   }
 
